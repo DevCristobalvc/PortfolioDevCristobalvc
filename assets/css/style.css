@@ -1879,4 +1879,26 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
+
+    /**
+	 * VER
+	 */
+   .btn-view {
+    padding: 10px 20px;
+    background-color: hsl(35, 59%, 61%); /* Color extraído de la imagen */
+    color: white;
+    text-align: center;
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    border: none; /* No border */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer; /* Cambia el cursor al pasar el mouse sobre el botón */
+  }
+  
+  .btn-view:hover {
+    background-color: #1b872f; /* Un tono ligeramente más oscuro para el efecto hover */
+  }
+  
 }
