@@ -160,6 +160,7 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
 document.getElementById('downloadButton').addEventListener('click', () => {
   window.location.href = 'https://detectamugre.praktil.co/DevCristobalvc/ApiDevCristobalvc/ApiFilesDevCristobalvc.php';
+  // contraseña = xxx
 });
 
 
