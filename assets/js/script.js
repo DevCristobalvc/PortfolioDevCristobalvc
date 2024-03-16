@@ -157,3 +157,32 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+document.getElementById('downloadButton').addEventListener('click', () => {
+  window.location.href = 'https://detectamugre.praktil.co/DevCristobalvc/ApiDevCristobalvc/ApiFilesDevCristobalvc.php';
+});
+
+
+
+/* Api Certificates 
+ftp://cristobal%2540praktil.co@ftp.praktil.co/DevCristobalvc/FilesDevCristobalvc/CertificadoLaboralSENA_CRISTOBAL.pdf
+document.getElementById('downloadButton').addEventListener('click', () => {
+  const url = 'https://detectamugre.praktil.co/DevCristobalvc/ApiDevCristobalvc/FilesDevCristobalvc/CertificadoLaboralSENA_CRISTOBAL.pdf';
+  fetch(url, {
+      method: 'GET',
+      headers: {}
+  })
+  .then(response => response.blob())
+  .then(blob => {
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.setAttribute('download', 'CertificadoLaboralSENA_CRISTOBAL.pdf');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+  })
+  .catch(e => console.error('Error al descargar el archivo:', e));
+});
+
+*/
