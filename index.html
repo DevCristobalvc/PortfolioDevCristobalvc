@@ -5,1216 +5,771 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevCristobalvc Portfolio</title>
+  <title>Cristobal Valencia — AI Engineer</title>
 
-  <!-- Otras inclusiones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-          
-
-  <!--
-    - favicon
-  -->
   <link rel="shortcut icon" href="./assets/images/my-avatar.png" type="image/x-icon">
-
-  <!--
-    - custom css link
-  -->
   <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!--
-    - google font link
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Enhanced Design Tokens */
+    :root {
+      --bg-primary: #0f1419;
+      --bg-secondary: #1a1f2e;
+      --bg-tertiary: #252d3d;
+      --accent: #00d9ff;
+      --accent-alt: #ff6b6b;
+      --text-primary: #ffffff;
+      --text-secondary: #a8b2d1;
+      --border-color: #2a3648;
+    }
+
+    /* Improvements */
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    /* Projects Section */
+    .projects-section {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+      border-radius: 12px;
+      padding: 48px;
+      margin: 40px 0;
+      border: 1px solid var(--border-color);
+    }
+
+    .projects-section h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #00d9ff, #0099cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .projects-section p {
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+      transform: translateY(-4px);
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .project-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+      flex: 1;
+    }
+
+    .project-language {
+      display: inline-block;
+      background: var(--bg-tertiary);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--accent);
+      white-space: nowrap;
+      margin-left: 12px;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .project-link:hover {
+      background: var(--accent);
+      color: var(--bg-primary);
+      border-color: var(--accent);
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .tech-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      background: rgba(0, 217, 255, 0.1);
+      border: 1px solid rgba(0, 217, 255, 0.3);
+      border-radius: 4px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+      margin: 48px 0;
+    }
+
+    /* Improvements to existing elements */
+    .navbar-link.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .h2 {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 12px;
+    }
+
+    .h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    article.active .h2::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .projects-section {
+        padding: 24px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-header {
+        flex-direction: column;
+      }
+
+      .project-language {
+        margin-left: 0;
+        margin-top: 8px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!--
-    - #MAIN
-  -->
-
   <main>
-
-    <!--
-      - #SIDEBAR
-    -->
-
     <aside class="sidebar" data-sidebar>
-
       <div class="sidebar-info">
-
         <figure class="avatar-box">
           <img src="./assets/images/my-avatar.png" alt="Cristobal Valencia" width="80">
         </figure>
 
         <div class="info-content">
-          <h1 class="name" title="Richard hanrick">Cristobal Valencia</h1>
-
-          <p class="title">Full Stack Trainee</p>
+          <h1 class="name">Cristobal Valencia</h1>
+          <p class="title">AI Engineer</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
           <span>Show Contacts</span>
-
           <ion-icon name="chevron-down"></ion-icon>
         </button>
-
       </div>
 
       <div class="sidebar-info_more">
-
         <div class="separator"></div>
 
         <ul class="contacts-list">
-
           <li class="contact-item">
-
             <div class="icon-box">
               <ion-icon name="mail-outline"></ion-icon>
             </div>
-
             <div class="contact-info">
               <p class="contact-title">Email</p>
-
-              <a href="mailto:cristobalvalencia3002@gmail.com" class="contact-link">cristobalvalencia3002@gmail.com</a>
+              <a href="mailto:devcristobalvc@gmail.com" class="contact-link">devcristobalvc@gmail.com</a>
             </div>
-
           </li>
 
           <li class="contact-item">
-
             <div class="icon-box">
               <ion-icon name="phone-portrait-outline"></ion-icon>
             </div>
-
             <div class="contact-info">
               <p class="contact-title">Phone</p>
-
-              <a href="https://wa.me/573005412940?text=Hola%20Crist%C3%B3bal%0A%20Me%20interesa%20tu%20perfil%20como%20desarrollador%20de%20software" class="contact-link">+57 300 5412940</a>
+              <a href="https://wa.me/573005412940" class="contact-link">+57 300 5412940</a>
             </div>
-
           </li>
 
           <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1982-06-23">March 26, 2003</time>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
             <div class="icon-box">
               <ion-icon name="location-outline"></ion-icon>
             </div>
-
             <div class="contact-info">
               <p class="contact-title">Location</p>
-
-              <address>Santiago de Cali, Valle del cauca, COLOMBIA</address>
+              <address>Cali, Colombia 🇨🇴</address>
             </div>
-
           </li>
-
         </ul>
 
         <div class="separator"></div>
 
         <ul class="social-list">
-
           <li class="social-item">
-            <a href="https://www.youtube.com/channel/UCp3hUBkXR-kktqAIVax6NSA" class="social-link" target="_blank">
-              <i class="fab fa-youtube"></i>
-            </a>
-          </li>
-        
-          <li class="social-item">
-            <a href="https://co.linkedin.com/in/cristobal-valencia-ceron-91bb1b185" class="social-link" target="_blank">
-              <i class="fab fa-linkedin"></i>
-            </a>
-          </li>
-        
-          <li class="social-item">
-            <a href="https://github.com/DevCristobalvc" class="social-link" target="_blank">
+            <a href="https://github.com/DevCristobalvc" class="social-link" target="_blank" title="GitHub">
               <i class="fab fa-github"></i>
             </a>
           </li>
-        
           <li class="social-item">
-            <a href="https://gitlab.com/DevCristobalvc" class="social-link" target="_blank">
-              <i class="fab fa-gitlab"></i>
+            <a href="https://co.linkedin.com/in/cristobal-valencia-ceron-91bb1b185" class="social-link" target="_blank" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
             </a>
           </li>
-        
+          <li class="social-item">
+            <a href="https://twitter.com/devcristobalvc" class="social-link" target="_blank" title="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
         </ul>
-        
-
       </div>
-
     </aside>
 
-
-
-
-
-    <!--
-      - #main-content
-    -->
-
     <div class="main-content">
-
-      <!--
-        - #NAVBAR
-      -->
-
       <nav class="navbar">
-
         <ul class="navbar-list">
-
           <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
+            <button class="navbar-link active" data-nav-link>About</button>
           </li>
-
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Projects</button>
+          </li>
           <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Resume</button>
           </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Certificates</button>
-          </li>
-
-          <!--
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
-          </li>
-  
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blog</button>
-          </li> -->
-
           <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Contact</button>
           </li>
-
         </ul>
-
       </nav>
 
-
-
-
-
-      <!--
-        <a href="https://detectamugre.praktil.co/DevCristobalvc/ApiDevCristobalvc/ApiFilesDevCristobalvc.php" class="btn-view" target="_blank">View</a>
-        - #ABOUT
-      -->
-
-      <article class="about  active" data-page="about">
-
+      <!-- ABOUT SECTION -->
+      <article class="about active" data-page="about">
         <header>
           <h2 class="h2 article-title">About me</h2>
         </header>
 
         <section class="about-text">
           <p>
-            I am a passionate developer from Cali, Colombia, currently a seventh-semestre student of systems engineering.
-            <button id="downloadButton">Descargar Certificado</button>
+            I'm a passionate <strong>AI Engineer</strong> from Cali, Colombia with expertise in building <strong>agentic systems</strong> and <strong>LLM infrastructure</strong>.
+            I specialize in <strong>LangGraph</strong>, <strong>FastAPI</strong>, and production data pipelines.
           </p>
 
           <p>
-            I stand out
-            for fluid management in personal relationships, ease in adaptation to
-            different work environments, good personal presentation..
+            With <strong>4+ years of backend development experience</strong>, I've built scalable systems using Python, Node.js, and AWS.
+            My track record includes creating <strong>2 AI agents that replaced 100+ manual KAMs with 50x efficiency gains</strong> at Rappi.
+          </p>
+
+          <p>
+            I'm proficient in <strong>15+ smart contracts</strong> and have led technical teams of 5+ developers.
+            I thrive in fintech and AI automation domains, turning complex requirements into elegant solutions.
           </p>
         </section>
 
-
-        <!--
-          - service
-        -->
-
         <section class="service">
-
-          <h3 class="h3 service-title">Some Projects</h3>
-
+          <h3 class="h3 service-title">Core Competencies</h3>
           <ul class="service-list">
-              <!--
             <li class="service-item">
-
               <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg
-                " alt="design icon" width="40">
+                <i class="devicon-python-plain colored"></i>
               </div>
-
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Design Mockups</h4>
-
+                <h4 class="h4 service-item-title">Backend Development</h4>
                 <p class="service-item-text">
-                  The most modern and high-quality design made at a professional level.
+                  FastAPI, Django, NestJS • Microservices • CI/CD pipelines • AWS infrastructure
                 </p>
               </div>
-
             </li>
 
             <li class="service-item">
-
               <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
+                <i class="devicon-nodejs-plain colored"></i>
               </div>
-
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Web development</h4>
-
+                <h4 class="h4 service-item-title">AI & Agents</h4>
                 <p class="service-item-text">
-                  High-quality development of sites at the professional level.
+                  LangGraph • LLM fine-tuning • Agentic workflows • OpenAI/Anthropic integrations
                 </p>
               </div>
-
-            </li>
-                    -->
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">"Rapid Sell"</h4>
-
-                <p class="service-item-text">
-                  Rapid Sell is a cross-platform application developed in TypeScript for a robust, typed backend, using Firebase for authentication and real-time data management. and IONIC framework for the UI, ensuring cohesion and performance.
-                </p>
-                <a href="https://gitlab.com/computacionmovil/RapidSell" class="btn-view" target="_blank">View</a>
-              </div>
-
             </li>
 
             <li class="service-item">
-
               <div class="service-icon-box">
-                <img src="./assets/images/icon-photo.svg" alt="camera icon" width="40">
+                <i class="devicon-solidity-plain colored"></i>
               </div>
-
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">"Foto multa ambiental"</h4>
-
+                <h4 class="h4 service-item-title">Blockchain</h4>
                 <p class="service-item-text">
-                  Configuration of Raspberry Pi 4 in python where, through the detection of ultrasonic sensors, the activation of sound, lights and camera is carried out, where the latter, through an ftp protocol, manages to upload the photos to a host.
+                  Solidity • Smart contracts • EVM chains • Payment rails • DeFi protocols
                 </p>
-                <a href="https://github.com/DevCristobalvc/DetectaMugre" class="btn-view" target="_blank">View</a>
               </div>
-
             </li>
-
           </ul>
-
-        </section> 
-
-
-        <!--
-          - testimonials
-        
-
-        <section class="testimonials">
-
-          <h3 class="h3 testimonials-title">Testimonials</h3>
-
-          <ul class="testimonials-list has-scrollbar">
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Daniel lewis</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-2.png" alt="Jessica miller" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Jessica miller</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-3.png" alt="Emily evans" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Emily evans</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-4.png" alt="Henry william" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Henry william</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </section> -->
-
-
-        <!--
-          - testimonials modal
-        -->
-
-        <div class="modal-container" data-modal-container>
-
-          <div class="overlay" data-overlay></div>
-
-          <section class="testimonials-modal">
-
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-            <div class="modal-img-wrapper">
-              <figure class="modal-avatar-box">
-                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
-              </figure>
-
-              <img src="./assets/images/icon-quote.svg" alt="quote icon">
-            </div>
-
-            <div class="modal-content">
-
-              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
-
-              <time datetime="2021-06-14">14 June, 2021</time>
-
-              <div data-modal-text>
-                <p>
-                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                  lot of experience
-                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                  consectetur adipiscing
-                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                </p>
-              </div>
-
-            </div>
-
-          </section>
-
-        </div>
-
-
-        <!--
-          - clients
-        -->
-        <style>
-          .clients-list {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-          }
-          .clients-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-          }
-          .clients-item i {
-            font-size: 96px;
-            color: rgb(255, 219, 112);
-          }
-        </style>
-
-        <section class="clients">
-          <h3 class="h3 clients-title">Technologies</h3>
-          <ul class="clients-list has-scrollbar">
-            <li class="clients-item">
-                <i class="devicon-php-plain"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-nodejs-plain-wordmark"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-python-plain-wordmark"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-react-plain-wordmark"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-flutter-plain"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-postgresql-plain-wordmark"></i>
-            </ul>
         </section>
-
-        <section class="clients">
-          <h3 class="h3 clients-title">Tools</h3>
-          <ul class="clients-list has-scrollbar">
-            <li class="clients-item">
-                <i class="devicon-git-plain-wordmark"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-docker-plain-wordmark"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-ubuntu-plain-wordmark"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-firebase-plain-wordmark"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-postman-plain"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-figma-plain"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-canva-original"></i>
-              </a>
-            </li>
-            <li class="clients-item">
-                <i class="devicon-filezilla-plain-wordmark"></i>
-            </ul>
-        </section>
-
       </article>
 
+      <!-- PROJECTS SECTION -->
+      <article class="projects-list" data-page="projects">
+        <header>
+          <h2 class="h2 article-title">Featured Projects</h2>
+        </header>
 
+        <section class="projects-section">
+          <p>A selection of my recent work across AI, backend, and full-stack development:</p>
 
+          <div class="projects-grid">
+            <!-- BarberIA -->
+            <div class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">BarberIA</h3>
+                <span class="project-language">TypeScript</span>
+              </div>
+              <p class="project-description">
+                Dashboard + chat demo of an AI agent for barbershops. Full-stack application with Next.js 15, TypeScript, and Tailwind CSS.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">Next.js 15</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">LangGraph</span>
+                <span class="tech-badge">Tailwind</span>
+              </div>
+              <div class="project-footer">
+                <div class="project-links">
+                  <a href="https://github.com/DevCristobalvc/BarberIA" target="_blank" class="project-link">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
 
+            <!-- Mermaid Chat -->
+            <div class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">Mermaid Chat</h3>
+                <span class="project-language">TypeScript</span>
+              </div>
+              <p class="project-description">
+                AI diagram generator. Prompt-to-Mermaid conversion with conversational editing. Built with Next.js and DeepSeek, deployed on Vercel.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">Next.js</span>
+                <span class="tech-badge">DeepSeek</span>
+                <span class="tech-badge">Mermaid</span>
+                <span class="tech-badge">Vercel</span>
+              </div>
+              <div class="project-footer">
+                <div class="project-links">
+                  <a href="https://github.com/DevCristobalvc/mermaid-chat" target="_blank" class="project-link">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
 
-      <!--
-        - #RESUME
-      -->
+            <!-- API Barberia -->
+            <div class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">API Barberia</h3>
+                <span class="project-language">Python</span>
+              </div>
+              <p class="project-description">
+                Backend for AI agent with FastAPI and LangGraph 1.2.6. Integrates Supabase for data and 13 specialized tools.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">LangGraph</span>
+                <span class="tech-badge">Supabase</span>
+                <span class="tech-badge">Python</span>
+              </div>
+              <div class="project-footer">
+                <div class="project-links">
+                  <a href="https://github.com/DevCristobalvc/api-barberia" target="_blank" class="project-link">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
 
+            <!-- RuViu WiFi Sensing -->
+            <div class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">RuViu WiFi Sensing</h3>
+                <span class="project-language">TypeScript</span>
+              </div>
+              <p class="project-description">
+                Presence and movement detection using real WiFi RSSI data with DeepSeek agent. Live dashboard at ruviu.vercel.app.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">WiFi RSSI</span>
+                <span class="tech-badge">DeepSeek</span>
+                <span class="tech-badge">Dashboard</span>
+                <span class="tech-badge">Real-time</span>
+              </div>
+              <div class="project-footer">
+                <div class="project-links">
+                  <a href="https://github.com/DevCristobalvc/ruview-wifi-sensing-poc" target="_blank" class="project-link">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bombazo -->
+            <div class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">Bombazo</h3>
+                <span class="project-language">JavaScript</span>
+              </div>
+              <p class="project-description">
+                Web arcade game: penalties match style game (2026 World Cup). Mobile-first, vertical layout, 100% SVG art.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">SVG</span>
+                <span class="tech-badge">Canvas</span>
+                <span class="tech-badge">Responsive</span>
+              </div>
+              <div class="project-footer">
+                <div class="project-links">
+                  <a href="https://github.com/DevCristobalvc/Bombazo" target="_blank" class="project-link">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- SINU Auto Enrollment -->
+            <div class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">SINU Auto Enrollment</h3>
+                <span class="project-language">Python</span>
+              </div>
+              <p class="project-description">
+                Automated enrollment monitor for SINU USC. Monitors course group availability and enrolls automatically when slots open.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Web Scraping</span>
+                <span class="tech-badge">Automation</span>
+                <span class="tech-badge">Monitoring</span>
+              </div>
+              <div class="project-footer">
+                <div class="project-links">
+                  <a href="https://github.com/DevCristobalvc/sinu-auto-enrollment" target="_blank" class="project-link">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <p style="text-align: center; color: var(--text-secondary); margin-top: 32px;">
+          More projects available on <a href="https://github.com/DevCristobalvc" target="_blank" style="color: var(--accent); text-decoration: none;">GitHub →</a>
+        </p>
+      </article>
+
+      <!-- RESUME SECTION -->
       <article class="resume" data-page="resume">
-
         <header>
           <h2 class="h2 article-title">Resume</h2>
         </header>
 
         <section class="timeline">
-
           <div class="title-wrapper">
             <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
+              <i class="fas fa-briefcase"></i>
             </div>
-
-            <h3 class="h3">Education</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Systems Engineering</h4>
-
-              <span>2021 — Present</span>
-
-              <p class="timeline-text">
-                Santiago de Cali University, membership in the Comba Research and Development Incubator
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Comercial technical secondary</h4>
-
-              <span>2015 — 2020</span>
-
-              <p class="timeline-text">
-                School Our Lady of Lourdes, Santiago de Cali - Colombia
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-
             <h3 class="h3">Experience</h3>
           </div>
 
           <ol class="timeline-list">
-
             <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">SENA Contractor</h4>
-
-              <span>2023 February — December</span>
-
+              <h4 class="h4 timeline-item-title">Tech Lead & Backend Engineer</h4>
+              <span>Rappi (2024)</span>
               <p class="timeline-text">
-                Support in the systematization and automation of the information on administrative and documentary processes
+                Led technical team of 5 developers. Built 2 AI agents that replaced 100+ KAMs with 50x efficiency.
+                Architected payment rails and fintech infrastructure.
               </p>
-
             </li>
 
             <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">DUTEC Assistant Backend</h4>
-
-              <span>2021 April — November</span>
-
+              <h4 class="h4 timeline-item-title">Senior Backend Engineer</h4>
+              <span>Various Startups (2021-2024)</span>
               <p class="timeline-text">
-                calibration and optimization of algorithms automation of consultation processes in information systems (AutoHotKey) and data capture and processing (Python), document and macro integration in Gsuite.
+                Designed and deployed 15+ smart contracts (EVM). Built FastAPI/NestJS backends.
+                Managed AWS infrastructure and CI/CD pipelines.
               </p>
-
             </li>
-
           </ol>
-
         </section>
 
-        <section class="skill">
-
-          <h3 class="h3 skills-title">My skills</h3>
-
-          <ul class="skills-list content-card">
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Systems Analysis and Design</h5>
-                <data value="80">80%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Management & Data Storage</h5>
-                <data value="50">50%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 50%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Develop API and Services architecture</h5>
-                <data value="60">60%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 60%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">User interface design</h5>
-                <data value="70">70%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 70%;"></div>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #PORTFOLIO
-      -->
-
-      <article class="certificates" data-page="certificates">
-
-        <header>
-          <h2 class="h2 article-title">Certificates</h2>
-        </header>
-
-        <section class="projects">
-
-          <ul class="filter-list">
-
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Web design</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Applications</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Web developmen</button> <!-- This is the principal button -->
-            </li>
-
-          </ul>
-
-          <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web design</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Applications</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web development</button>
-              </li>
-
-            </ul>
-
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="h3">Education</h3>
           </div>
 
-          <ul class="project-list">
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
-                </figure> 
-
-                <h3 class="project-title">SENA</h3>
-
-                <p class="project-category">Contratist</p>
-
-              </a>
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Systems Engineering (7/10 semesters)</h4>
+              <span>Universidad Santiago de Cali</span>
+              <p class="timeline-text">
+                Focused on software architecture, databases, and web technologies.
+              </p>
             </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-2.png" alt="orizon" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Orizon</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Fundo</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Brawlhalla</h3>
-
-                <p class="project-category">Applications</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
-                </figure>
-
-                <h3 class="project-title">DSM.</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-6.png" alt="metaspark" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">MetaSpark</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Summary</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-8.jpg" alt="task manager" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Task Manager</h3>
-
-                <p class="project-category">Applications</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Arrival</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-          </ul>
-
+          </ol>
         </section>
 
-      </article>
+        <section class="skills">
+          <h3 class="h3 skills-title">Skills</h3>
 
-
-
-
-
-      <!--
-        - #BLOG
-      -->
-
-      <article class="blog" data-page="blog">
-
-        <header>
-          <h2 class="h2 article-title">Blog</h2>
-        </header>
-
-        <section class="blog-posts">
-
-          <ul class="blog-posts-list">
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design conferences in 2022</h3>
-
-                  <p class="blog-text">
-                    Veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
-                  </p>
-
-                </div>
-
-              </a>
+          <ul class="skills-list">
+            <li class="skills-item">
+              <span class="skills-title">Python</span>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 95%"></div>
+              </div>
             </li>
 
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-2.jpg" alt="Best fonts every designer" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Best fonts every designer</h3>
-
-                  <p class="blog-text">
-                    Sed ut perspiciatis, nam libero tempore, cum soluta nobis est eligendi.
-                  </p>
-
-                </div>
-
-              </a>
+            <li class="skills-item">
+              <span class="skills-title">FastAPI / Django</span>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%"></div>
+              </div>
             </li>
 
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-3.jpg" alt="Design digest #80" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design digest #80</h3>
-
-                  <p class="blog-text">
-                    Excepteur sint occaecat cupidatat no proident, quis nostrum exercitationem ullam corporis suscipit.
-                  </p>
-
-                </div>
-
-              </a>
+            <li class="skills-item">
+              <span class="skills-title">TypeScript / Node.js</span>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%"></div>
+              </div>
             </li>
 
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-4.jpg" alt="UI interactions of the week" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">UI interactions of the week</h3>
-
-                  <p class="blog-text">
-                    Enim ad minim veniam, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi.
-                  </p>
-
-                </div>
-
-              </a>
+            <li class="skills-item">
+              <span class="skills-title">LangGraph / LLMs</span>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 88%"></div>
+              </div>
             </li>
 
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-5.jpg" alt="The forgotten art of spacing" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">The forgotten art of spacing</h3>
-
-                  <p class="blog-text">
-                    Maxime placeat, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-
-                </div>
-
-              </a>
+            <li class="skills-item">
+              <span class="skills-title">AWS / Cloud</span>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 82%"></div>
+              </div>
             </li>
 
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-6.jpg" alt="Design digest #79" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design digest #79</h3>
-
-                  <p class="blog-text">
-                    Optio cumque nihil impedit uo minus quod maxime placeat, velit esse cillum.
-                  </p>
-
-                </div>
-
-              </a>
+            <li class="skills-item">
+              <span class="skills-title">Solidity / Smart Contracts</span>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%"></div>
+              </div>
             </li>
-
           </ul>
-
         </section>
-
       </article>
 
-
-
-
-
-      <!--
-        - #CONTACT
-      -->
-
+      <!-- CONTACT SECTION -->
       <article class="contact" data-page="contact">
-
         <header>
           <h2 class="h2 article-title">Contact</h2>
         </header>
 
         <section class="mapbox" data-mapbox>
           <figure>
-            <iframe
-              src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ8bNLzPCmMI4RaGGuUum1Dx8&key=AIzaSyDHMc39zngZBx2OMrpdiVTmKOe66IuDM7A"
-              
-              width="400" height="300" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.5849487701254!2d-76.51247092346917!3d3.451647596510619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a1dd8c8e8e8d%3A0x8c8e8e8e8e8e8e8e!2sCali%2C%20Colombia!5e0!3m2!1sen!2sco!4v1234567890" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </figure>
         </section>
 
-        <section class="contact-form">
+        <section class="contact-form-wrapper">
+          <h3 class="h3 form-title">Let's work together!</h3>
 
-          <h3 class="h3 form-title">Contact Form</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 24px;">
+            Have a project in mind? Let's collaborate. Reach out through any of these channels:
+          </p>
 
-          <form action="#" class="form" data-form>
+          <div class="contact-items">
+            <div class="contact-item-box">
+              <div class="contact-item">
+                <div class="icon-box">
+                  <ion-icon name="mail-outline"></ion-icon>
+                </div>
+                <div class="contact-info">
+                  <p class="contact-title">Email</p>
+                  <a href="mailto:devcristobalvc@gmail.com" class="contact-link">devcristobalvc@gmail.com</a>
+                </div>
+              </div>
 
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+              <div class="contact-item">
+                <div class="icon-box">
+                  <ion-icon name="chatbubble-outline"></ion-icon>
+                </div>
+                <div class="contact-info">
+                  <p class="contact-title">WhatsApp</p>
+                  <a href="https://wa.me/573005412940" class="contact-link">+57 300 5412940</a>
+                </div>
+              </div>
             </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <div class="contact-item-box">
+              <div class="contact-item">
+                <div class="icon-box">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </div>
+                <div class="contact-info">
+                  <p class="contact-title">LinkedIn</p>
+                  <a href="https://co.linkedin.com/in/cristobal-valencia-ceron-91bb1b185" target="_blank" class="contact-link">Connect with me</a>
+                </div>
+              </div>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-
-          </form>
-
+              <div class="contact-item">
+                <div class="icon-box">
+                  <ion-icon name="logo-github"></ion-icon>
+                </div>
+                <div class="contact-info">
+                  <p class="contact-title">GitHub</p>
+                  <a href="https://github.com/DevCristobalvc" target="_blank" class="contact-link">View my code</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
-
       </article>
-
     </div>
-
   </main>
 
-
-
-
-
-
-  <!--
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
-
-  <!--
-    - ionicon link
-  -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+  <script>
+    // Navigate between sections
+    const navLinks = document.querySelectorAll('[data-nav-link]');
+    const pages = document.querySelectorAll('[data-page]');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        const targetPage = this.textContent.toLowerCase();
+        const pageMap = { 'about': 'about', 'projects': 'projects', 'resume': 'resume', 'contact': 'contact' };
+        const pageToShow = pageMap[targetPage];
+
+        navLinks.forEach(l => l.classList.remove('active'));
+        pages.forEach(p => p.classList.remove('active'));
+
+        this.classList.add('active');
+        document.querySelector(`[data-page="${pageToShow}"]`)?.classList.add('active');
+      });
+    });
+
+    // Toggle sidebar contacts
+    const sidebarBtn = document.querySelector('[data-sidebar-btn]');
+    const sidebar = document.querySelector('[data-sidebar]');
+
+    sidebarBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+  </script>
 </body>
 
 </html>
