@@ -1,81 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cristobal Valencia — AI Engineer</title>
+  <title>Cristobal Valencia · AI Engineer</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
   <link rel="shortcut icon" href="./assets/images/my-avatar.png" type="image/x-icon">
-  <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* Enhanced Design Tokens */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     :root {
-      --bg-primary: #0f1419;
-      --bg-secondary: #1a1f2e;
-      --bg-tertiary: #252d3d;
-      --accent: #00d9ff;
-      --accent-alt: #ff6b6b;
+      --bg-dark: #0a0e27;
+      --bg-secondary: #111633;
+      --bg-tertiary: #1a1f3a;
+      --accent-cyan: #00d9ff;
+      --accent-blue: #0099cc;
+      --accent-purple: #8b5cf6;
       --text-primary: #ffffff;
-      --text-secondary: #a8b2d1;
-      --border-color: #2a3648;
+      --text-secondary: #a0aec0;
+      --text-tertiary: #718096;
+      --border-color: #2d3748;
+      --success: #10b981;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Fira Code', monospace;
     }
 
-    /* Improvements */
+    html { scroll-behavior: smooth; }
     body {
-      background: var(--bg-primary);
+      background: var(--bg-dark);
       color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
     }
 
-    /* Projects Section */
-    .projects-section {
-      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-      border-radius: 12px;
-      padding: 48px;
-      margin: 40px 0;
-      border: 1px solid var(--border-color);
+    /* Gradient mesh background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .projects-section h2 {
-      font-size: 28px;
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    /* HEADER */
+    .header {
+      margin-bottom: 80px;
+    }
+
+    .header-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .header-text h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 700;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, #00d9ff, #0099cc);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .header-text h1 .gradient-text {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .projects-section p {
+    .header-text .subtitle {
+      font-size: 1.125rem;
       color: var(--text-secondary);
-      margin-bottom: 40px;
-      font-size: 16px;
+      margin-bottom: 24px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .header-text .highlight {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.05);
+    }
+
+    .btn-primary {
+      background: var(--accent-cyan);
+      color: var(--bg-dark);
+      border-color: var(--accent-cyan);
+    }
+
+    .btn-primary:hover {
+      background: rgba(0, 217, 255, 0.9);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .avatar-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .avatar-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0%);
+      transition: filter 0.3s ease;
+    }
+
+    .avatar-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(139, 92, 246, 0.1));
+      border-radius: 16px;
+      border: 1px solid rgba(0, 217, 255, 0.2);
+    }
+
+    /* SOCIAL LINKS */
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 1.125rem;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.05);
+    }
+
+    /* SECTION DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+      margin: 80px 0;
+    }
+
+    /* FEATURED PROJECTS */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      font-weight: 400;
     }
 
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 24px;
+      margin-bottom: 60px;
     }
 
     .project-card {
-      background: var(--bg-secondary);
+      background: linear-gradient(135deg, rgba(26, 31, 58, 0.4), rgba(17, 22, 51, 0.2));
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 24px;
+      border-radius: 12px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       height: 100%;
-      position: relative;
-      overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .project-card::before {
@@ -85,16 +253,17 @@
       left: 0;
       width: 100%;
       height: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .project-card:hover {
-      border-color: var(--accent);
-      background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+      border-color: var(--accent-cyan);
+      background: linear-gradient(135deg, rgba(26, 31, 58, 0.6), rgba(17, 22, 51, 0.4));
       transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     .project-card:hover::before {
@@ -103,673 +272,611 @@
 
     .project-header {
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
       margin-bottom: 16px;
     }
 
     .project-title {
-      font-size: 18px;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--text-primary);
       margin: 0;
-      flex: 1;
     }
 
     .project-language {
-      display: inline-block;
-      background: var(--bg-tertiary);
-      color: var(--accent);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
       font-weight: 500;
-      border: 1px solid var(--accent);
+      background: rgba(0, 217, 255, 0.1);
+      color: var(--accent-cyan);
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 217, 255, 0.3);
       white-space: nowrap;
-      margin-left: 12px;
     }
 
     .project-description {
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 0.95rem;
       line-height: 1.6;
       margin-bottom: 20px;
       flex-grow: 1;
-    }
-
-    .project-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .project-links {
-      display: flex;
-      gap: 12px;
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .project-link:hover {
-      background: var(--accent);
-      color: var(--bg-primary);
-      border-color: var(--accent);
     }
 
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-color);
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .tech-badge {
-      display: inline-flex;
+    .tech-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--accent-purple);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .project-footer {
+      display: flex;
+      gap: 12px;
+    }
+
+    .project-link {
+      flex: 1;
+      padding: 10px 12px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: flex;
       align-items: center;
-      gap: 4px;
-      padding: 4px 8px;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+    }
+
+    .project-link:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.05);
+    }
+
+    /* EXPERTISE SECTION */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .expertise-card {
+      background: rgba(17, 22, 51, 0.3);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 28px;
+      transition: all 0.3s ease;
+    }
+
+    .expertise-card:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(17, 22, 51, 0.5);
+    }
+
+    .expertise-icon {
+      width: 48px;
+      height: 48px;
       background: rgba(0, 217, 255, 0.1);
       border: 1px solid rgba(0, 217, 255, 0.3);
-      border-radius: 4px;
-      color: var(--accent);
-      font-size: 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--accent-cyan);
+    }
+
+    .expertise-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .expertise-text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin: 60px 0;
+      padding: 40px;
+      background: rgba(17, 22, 51, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
       font-weight: 500;
     }
 
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-color), transparent);
-      margin: 48px 0;
+    /* CONTACT SECTION */
+    .contact-section {
+      background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(139, 92, 246, 0.05));
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 48px;
+      text-align: center;
     }
 
-    /* Improvements to existing elements */
-    .navbar-link.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
+    .contact-section h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      font-weight: 700;
     }
 
-    .h2 {
-      position: relative;
-      display: inline-block;
-      padding-bottom: 12px;
+    .contact-section p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
+    .contact-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
     }
 
-    article.active .h2::after {
-      transform: scaleX(1);
+    .contact-link {
+      padding: 16px 20px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
     }
 
+    .contact-link:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.05);
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-tertiary);
+      border-top: 1px solid var(--border-color);
+      margin-top: 80px;
+      font-size: 0.9rem;
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .projects-section {
-        padding: 24px;
+      main {
+        padding: 40px 20px;
       }
 
-      .projects-grid {
+      .header-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .header-text h1 {
+        font-size: 1.75rem;
+      }
+
+      .projects-grid,
+      .expertise-grid,
+      .contact-links {
         grid-template-columns: 1fr;
       }
 
-      .project-header {
-        flex-direction: column;
+      .project-card,
+      .expertise-card {
+        padding: 24px;
       }
 
-      .project-language {
-        margin-left: 0;
-        margin-top: 8px;
+      .divider {
+        margin: 60px 0;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 24px;
+      }
+
+      .contact-section {
+        padding: 32px 24px;
       }
     }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    main > * {
+      animation: fadeIn 0.6s ease-out both;
+    }
+
+    main > *:nth-child(1) { animation-delay: 0.1s; }
+    main > *:nth-child(2) { animation-delay: 0.2s; }
+    main > *:nth-child(3) { animation-delay: 0.3s; }
+    main > *:nth-child(4) { animation-delay: 0.4s; }
+    main > *:nth-child(5) { animation-delay: 0.5s; }
   </style>
 </head>
 
 <body>
-
   <main>
-    <aside class="sidebar" data-sidebar>
-      <div class="sidebar-info">
-        <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="Cristobal Valencia" width="80">
-        </figure>
-
-        <div class="info-content">
-          <h1 class="name">Cristobal Valencia</h1>
-          <p class="title">AI Engineer</p>
-        </div>
-
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-      </div>
-
-      <div class="sidebar-info_more">
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-              <a href="mailto:devcristobalvc@gmail.com" class="contact-link">devcristobalvc@gmail.com</a>
-            </div>
-          </li>
-
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-              <a href="https://wa.me/573005412940" class="contact-link">+57 300 5412940</a>
-            </div>
-          </li>
-
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-              <address>Cali, Colombia 🇨🇴</address>
-            </div>
-          </li>
-        </ul>
-
-        <div class="separator"></div>
-
-        <ul class="social-list">
-          <li class="social-item">
-            <a href="https://github.com/DevCristobalvc" class="social-link" target="_blank" title="GitHub">
+    <!-- HEADER -->
+    <section class="header">
+      <div class="header-content">
+        <div class="header-text">
+          <h1>Cristobal <span class="gradient-text">Valencia</span></h1>
+          <p class="subtitle">
+            Building <span class="highlight">production-grade AI agents</span> and <span class="highlight">backend infrastructure</span>.
+            4+ years of backend engineering, 50x efficiency at Rappi, 15+ smart contracts, tech lead experience.
+          </p>
+          <div class="cta-group">
+            <a href="mailto:devcristobalvc@gmail.com" class="btn btn-primary">
+              <i class="fas fa-envelope"></i> Get in touch
+            </a>
+            <a href="https://github.com/DevCristobalvc" target="_blank" class="btn">
+              <i class="fab fa-github"></i> View code
+            </a>
+          </div>
+          <div class="social-links">
+            <a href="https://github.com/DevCristobalvc" target="_blank" class="social-link" title="GitHub">
               <i class="fab fa-github"></i>
             </a>
-          </li>
-          <li class="social-item">
-            <a href="https://co.linkedin.com/in/cristobal-valencia-ceron-91bb1b185" class="social-link" target="_blank" title="LinkedIn">
+            <a href="https://linkedin.com/in/cristobal-valencia-ceron-91bb1b185" target="_blank" class="social-link" title="LinkedIn">
               <i class="fab fa-linkedin"></i>
             </a>
-          </li>
-          <li class="social-item">
-            <a href="https://twitter.com/devcristobalvc" class="social-link" target="_blank" title="Twitter">
-              <i class="fab fa-twitter"></i>
+            <a href="https://wa.me/573005412940" target="_blank" class="social-link" title="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
             </a>
-          </li>
-        </ul>
+            <a href="mailto:devcristobalvc@gmail.com" class="social-link" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+        <div class="avatar-container">
+          <img src="./assets/images/my-avatar.png" alt="Cristobal Valencia">
+        </div>
       </div>
-    </aside>
 
-    <div class="main-content">
-      <nav class="navbar">
-        <ul class="navbar-list">
-          <li class="navbar-item">
-            <button class="navbar-link active" data-nav-link>About</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Projects</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
-          </li>
-        </ul>
-      </nav>
+      <!-- STATS -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">50x</div>
+          <div class="stat-label">Efficiency Gain</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4+</div>
+          <div class="stat-label">Years Backend</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Smart Contracts</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Team Lead</div>
+        </div>
+      </div>
+    </section>
 
-      <!-- ABOUT SECTION -->
-      <article class="about active" data-page="about">
-        <header>
-          <h2 class="h2 article-title">About me</h2>
-        </header>
+    <div class="divider"></div>
 
-        <section class="about-text">
-          <p>
-            I'm a passionate <strong>AI Engineer</strong> from Cali, Colombia with expertise in building <strong>agentic systems</strong> and <strong>LLM infrastructure</strong>.
-            I specialize in <strong>LangGraph</strong>, <strong>FastAPI</strong>, and production data pipelines.
+    <!-- EXPERTISE -->
+    <section>
+      <h2 class="section-title">Core Expertise</h2>
+      <p class="section-subtitle">Technologies and domains where I build production systems</p>
+
+      <div class="expertise-grid">
+        <div class="expertise-card">
+          <div class="expertise-icon">🐍</div>
+          <h3 class="expertise-title">Backend Engineering</h3>
+          <p class="expertise-text">
+            FastAPI, Django, NestJS. Microservices, async programming, REST APIs, CI/CD pipelines, AWS infrastructure.
           </p>
+        </div>
 
-          <p>
-            With <strong>4+ years of backend development experience</strong>, I've built scalable systems using Python, Node.js, and AWS.
-            My track record includes creating <strong>2 AI agents that replaced 100+ manual KAMs with 50x efficiency gains</strong> at Rappi.
+        <div class="expertise-card">
+          <div class="expertise-icon">🤖</div>
+          <h3 class="expertise-title">AI & Agents</h3>
+          <p class="expertise-text">
+            LangGraph, LLM fine-tuning, agentic workflows. OpenAI, Anthropic, and open-source model integrations.
           </p>
+        </div>
 
-          <p>
-            I'm proficient in <strong>15+ smart contracts</strong> and have led technical teams of 5+ developers.
-            I thrive in fintech and AI automation domains, turning complex requirements into elegant solutions.
+        <div class="expertise-card">
+          <div class="expertise-icon">⛓️</div>
+          <h3 class="expertise-title">Blockchain</h3>
+          <p class="expertise-text">
+            Solidity smart contracts (15+), EVM chains, payment rails, DeFi protocols, crypto infrastructure.
           </p>
-        </section>
+        </div>
 
-        <section class="service">
-          <h3 class="h3 service-title">Core Competencies</h3>
-          <ul class="service-list">
-            <li class="service-item">
-              <div class="service-icon-box">
-                <i class="devicon-python-plain colored"></i>
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Backend Development</h4>
-                <p class="service-item-text">
-                  FastAPI, Django, NestJS • Microservices • CI/CD pipelines • AWS infrastructure
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item">
-              <div class="service-icon-box">
-                <i class="devicon-nodejs-plain colored"></i>
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">AI & Agents</h4>
-                <p class="service-item-text">
-                  LangGraph • LLM fine-tuning • Agentic workflows • OpenAI/Anthropic integrations
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item">
-              <div class="service-icon-box">
-                <i class="devicon-solidity-plain colored"></i>
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Blockchain</h4>
-                <p class="service-item-text">
-                  Solidity • Smart contracts • EVM chains • Payment rails • DeFi protocols
-                </p>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </article>
-
-      <!-- PROJECTS SECTION -->
-      <article class="projects-list" data-page="projects">
-        <header>
-          <h2 class="h2 article-title">Featured Projects</h2>
-        </header>
-
-        <section class="projects-section">
-          <p>A selection of my recent work across AI, backend, and full-stack development:</p>
-
-          <div class="projects-grid">
-            <!-- BarberIA -->
-            <div class="project-card">
-              <div class="project-header">
-                <h3 class="project-title">BarberIA</h3>
-                <span class="project-language">TypeScript</span>
-              </div>
-              <p class="project-description">
-                Dashboard + chat demo of an AI agent for barbershops. Full-stack application with Next.js 15, TypeScript, and Tailwind CSS.
-              </p>
-              <div class="tech-stack">
-                <span class="tech-badge">Next.js 15</span>
-                <span class="tech-badge">TypeScript</span>
-                <span class="tech-badge">LangGraph</span>
-                <span class="tech-badge">Tailwind</span>
-              </div>
-              <div class="project-footer">
-                <div class="project-links">
-                  <a href="https://github.com/DevCristobalvc/BarberIA" target="_blank" class="project-link">
-                    <i class="fab fa-github"></i> Code
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mermaid Chat -->
-            <div class="project-card">
-              <div class="project-header">
-                <h3 class="project-title">Mermaid Chat</h3>
-                <span class="project-language">TypeScript</span>
-              </div>
-              <p class="project-description">
-                AI diagram generator. Prompt-to-Mermaid conversion with conversational editing. Built with Next.js and DeepSeek, deployed on Vercel.
-              </p>
-              <div class="tech-stack">
-                <span class="tech-badge">Next.js</span>
-                <span class="tech-badge">DeepSeek</span>
-                <span class="tech-badge">Mermaid</span>
-                <span class="tech-badge">Vercel</span>
-              </div>
-              <div class="project-footer">
-                <div class="project-links">
-                  <a href="https://github.com/DevCristobalvc/mermaid-chat" target="_blank" class="project-link">
-                    <i class="fab fa-github"></i> Code
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- API Barberia -->
-            <div class="project-card">
-              <div class="project-header">
-                <h3 class="project-title">API Barberia</h3>
-                <span class="project-language">Python</span>
-              </div>
-              <p class="project-description">
-                Backend for AI agent with FastAPI and LangGraph 1.2.6. Integrates Supabase for data and 13 specialized tools.
-              </p>
-              <div class="tech-stack">
-                <span class="tech-badge">FastAPI</span>
-                <span class="tech-badge">LangGraph</span>
-                <span class="tech-badge">Supabase</span>
-                <span class="tech-badge">Python</span>
-              </div>
-              <div class="project-footer">
-                <div class="project-links">
-                  <a href="https://github.com/DevCristobalvc/api-barberia" target="_blank" class="project-link">
-                    <i class="fab fa-github"></i> Code
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- RuViu WiFi Sensing -->
-            <div class="project-card">
-              <div class="project-header">
-                <h3 class="project-title">RuViu WiFi Sensing</h3>
-                <span class="project-language">TypeScript</span>
-              </div>
-              <p class="project-description">
-                Presence and movement detection using real WiFi RSSI data with DeepSeek agent. Live dashboard at ruviu.vercel.app.
-              </p>
-              <div class="tech-stack">
-                <span class="tech-badge">WiFi RSSI</span>
-                <span class="tech-badge">DeepSeek</span>
-                <span class="tech-badge">Dashboard</span>
-                <span class="tech-badge">Real-time</span>
-              </div>
-              <div class="project-footer">
-                <div class="project-links">
-                  <a href="https://github.com/DevCristobalvc/ruview-wifi-sensing-poc" target="_blank" class="project-link">
-                    <i class="fab fa-github"></i> Code
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bombazo -->
-            <div class="project-card">
-              <div class="project-header">
-                <h3 class="project-title">Bombazo</h3>
-                <span class="project-language">JavaScript</span>
-              </div>
-              <p class="project-description">
-                Web arcade game: penalties match style game (2026 World Cup). Mobile-first, vertical layout, 100% SVG art.
-              </p>
-              <div class="tech-stack">
-                <span class="tech-badge">JavaScript</span>
-                <span class="tech-badge">SVG</span>
-                <span class="tech-badge">Canvas</span>
-                <span class="tech-badge">Responsive</span>
-              </div>
-              <div class="project-footer">
-                <div class="project-links">
-                  <a href="https://github.com/DevCristobalvc/Bombazo" target="_blank" class="project-link">
-                    <i class="fab fa-github"></i> Code
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- SINU Auto Enrollment -->
-            <div class="project-card">
-              <div class="project-header">
-                <h3 class="project-title">SINU Auto Enrollment</h3>
-                <span class="project-language">Python</span>
-              </div>
-              <p class="project-description">
-                Automated enrollment monitor for SINU USC. Monitors course group availability and enrolls automatically when slots open.
-              </p>
-              <div class="tech-stack">
-                <span class="tech-badge">Python</span>
-                <span class="tech-badge">Web Scraping</span>
-                <span class="tech-badge">Automation</span>
-                <span class="tech-badge">Monitoring</span>
-              </div>
-              <div class="project-footer">
-                <div class="project-links">
-                  <a href="https://github.com/DevCristobalvc/sinu-auto-enrollment" target="_blank" class="project-link">
-                    <i class="fab fa-github"></i> Code
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <p style="text-align: center; color: var(--text-secondary); margin-top: 32px;">
-          More projects available on <a href="https://github.com/DevCristobalvc" target="_blank" style="color: var(--accent); text-decoration: none;">GitHub →</a>
-        </p>
-      </article>
-
-      <!-- RESUME SECTION -->
-      <article class="resume" data-page="resume">
-        <header>
-          <h2 class="h2 article-title">Resume</h2>
-        </header>
-
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <i class="fas fa-briefcase"></i>
-            </div>
-            <h3 class="h3">Experience</h3>
-          </div>
-
-          <ol class="timeline-list">
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Tech Lead & Backend Engineer</h4>
-              <span>Rappi (2024)</span>
-              <p class="timeline-text">
-                Led technical team of 5 developers. Built 2 AI agents that replaced 100+ KAMs with 50x efficiency.
-                Architected payment rails and fintech infrastructure.
-              </p>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Senior Backend Engineer</h4>
-              <span>Various Startups (2021-2024)</span>
-              <p class="timeline-text">
-                Designed and deployed 15+ smart contracts (EVM). Built FastAPI/NestJS backends.
-                Managed AWS infrastructure and CI/CD pipelines.
-              </p>
-            </li>
-          </ol>
-        </section>
-
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
-            <h3 class="h3">Education</h3>
-          </div>
-
-          <ol class="timeline-list">
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Systems Engineering (7/10 semesters)</h4>
-              <span>Universidad Santiago de Cali</span>
-              <p class="timeline-text">
-                Focused on software architecture, databases, and web technologies.
-              </p>
-            </li>
-          </ol>
-        </section>
-
-        <section class="skills">
-          <h3 class="h3 skills-title">Skills</h3>
-
-          <ul class="skills-list">
-            <li class="skills-item">
-              <span class="skills-title">Python</span>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 95%"></div>
-              </div>
-            </li>
-
-            <li class="skills-item">
-              <span class="skills-title">FastAPI / Django</span>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%"></div>
-              </div>
-            </li>
-
-            <li class="skills-item">
-              <span class="skills-title">TypeScript / Node.js</span>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 85%"></div>
-              </div>
-            </li>
-
-            <li class="skills-item">
-              <span class="skills-title">LangGraph / LLMs</span>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 88%"></div>
-              </div>
-            </li>
-
-            <li class="skills-item">
-              <span class="skills-title">AWS / Cloud</span>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 82%"></div>
-              </div>
-            </li>
-
-            <li class="skills-item">
-              <span class="skills-title">Solidity / Smart Contracts</span>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%"></div>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </article>
-
-      <!-- CONTACT SECTION -->
-      <article class="contact" data-page="contact">
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
-
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.5849487701254!2d-76.51247092346917!3d3.451647596510619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a1dd8c8e8e8d%3A0x8c8e8e8e8e8e8e8e!2sCali%2C%20Colombia!5e0!3m2!1sen!2sco!4v1234567890" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </figure>
-        </section>
-
-        <section class="contact-form-wrapper">
-          <h3 class="h3 form-title">Let's work together!</h3>
-
-          <p style="color: var(--text-secondary); margin-bottom: 24px;">
-            Have a project in mind? Let's collaborate. Reach out through any of these channels:
+        <div class="expertise-card">
+          <div class="expertise-icon">📊</div>
+          <h3 class="expertise-title">Data & ML</h3>
+          <p class="expertise-text">
+            ETL pipelines, data processing, machine learning infrastructure, PostgreSQL, vector databases.
           </p>
+        </div>
 
-          <div class="contact-items">
-            <div class="contact-item-box">
-              <div class="contact-item">
-                <div class="icon-box">
-                  <ion-icon name="mail-outline"></ion-icon>
-                </div>
-                <div class="contact-info">
-                  <p class="contact-title">Email</p>
-                  <a href="mailto:devcristobalvc@gmail.com" class="contact-link">devcristobalvc@gmail.com</a>
-                </div>
-              </div>
+        <div class="expertise-card">
+          <div class="expertise-icon">💰</div>
+          <h3 class="expertise-title">Fintech</h3>
+          <p class="expertise-text">
+            Payment systems, fraud detection, risk management. Production experience with real financial flows.
+          </p>
+        </div>
 
-              <div class="contact-item">
-                <div class="icon-box">
-                  <ion-icon name="chatbubble-outline"></ion-icon>
-                </div>
-                <div class="contact-info">
-                  <p class="contact-title">WhatsApp</p>
-                  <a href="https://wa.me/573005412940" class="contact-link">+57 300 5412940</a>
-                </div>
-              </div>
-            </div>
+        <div class="expertise-card">
+          <div class="expertise-icon">👥</div>
+          <h3 class="expertise-title">Tech Leadership</h3>
+          <p class="expertise-text">
+            Managed teams of 5+ developers. Architecture decisions, mentoring, technical strategy, DevOps.
+          </p>
+        </div>
+      </div>
+    </section>
 
-            <div class="contact-item-box">
-              <div class="contact-item">
-                <div class="icon-box">
-                  <ion-icon name="logo-linkedin"></ion-icon>
-                </div>
-                <div class="contact-info">
-                  <p class="contact-title">LinkedIn</p>
-                  <a href="https://co.linkedin.com/in/cristobal-valencia-ceron-91bb1b185" target="_blank" class="contact-link">Connect with me</a>
-                </div>
-              </div>
+    <div class="divider"></div>
 
-              <div class="contact-item">
-                <div class="icon-box">
-                  <ion-icon name="logo-github"></ion-icon>
-                </div>
-                <div class="contact-info">
-                  <p class="contact-title">GitHub</p>
-                  <a href="https://github.com/DevCristobalvc" target="_blank" class="contact-link">View my code</a>
-                </div>
-              </div>
-            </div>
+    <!-- FEATURED PROJECTS -->
+    <section>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Recent work showcasing different domains and technical depth</p>
+
+      <div class="projects-grid">
+        <!-- BarberIA -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">BarberIA</h3>
+            <span class="project-language">TypeScript</span>
           </div>
-        </section>
-      </article>
-    </div>
+          <p class="project-description">
+            Full-stack AI agent dashboard for barbershops. Next.js 15, TypeScript, Tailwind, LangGraph backend with 13 specialized tools.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Next.js 15</span>
+            <span class="tech-tag">LangGraph</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Supabase</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/DevCristobalvc/BarberIA" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Mermaid Chat -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">Mermaid Chat</h3>
+            <span class="project-language">TypeScript</span>
+          </div>
+          <p class="project-description">
+            AI-powered diagram generator. Converts prompts to Mermaid diagrams with conversational editing. Live on Vercel.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">DeepSeek</span>
+            <span class="tech-tag">Mermaid</span>
+            <span class="tech-tag">Vercel</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/DevCristobalvc/mermaid-chat" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- API Barberia -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">API Barberia</h3>
+            <span class="project-language">Python</span>
+          </div>
+          <p class="project-description">
+            AI agent backend. FastAPI with LangGraph 1.2.6, Supabase integration, 13 specialized tools for business automation.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">LangGraph</span>
+            <span class="tech-tag">Supabase</span>
+            <span class="tech-tag">PostgreSQL</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/DevCristobalvc/api-barberia" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- RuViu WiFi Sensing -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">RuViu</h3>
+            <span class="project-language">TypeScript</span>
+          </div>
+          <p class="project-description">
+            Presence and movement detection using WiFi RSSI signals. Real-time dashboard, DeepSeek agent, production deployment.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">WiFi RSSI</span>
+            <span class="tech-tag">DeepSeek</span>
+            <span class="tech-tag">Real-time</span>
+            <span class="tech-tag">Vercel</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/DevCristobalvc/ruview-wifi-sensing-poc" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Bombazo -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">Bombazo</h3>
+            <span class="project-language">JavaScript</span>
+          </div>
+          <p class="project-description">
+            Web arcade game. Penalties game (World Cup 2026 style). Mobile-first, vertical layout, 100% SVG art, production-ready.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Canvas</span>
+            <span class="tech-tag">SVG</span>
+            <span class="tech-tag">Mobile</span>
+            <span class="tech-tag">Responsive</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/DevCristobalvc/Bombazo" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- SINU Auto Enrollment -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">SINU Auto Enrollment</h3>
+            <span class="project-language">Python</span>
+          </div>
+          <p class="project-description">
+            Automated enrollment monitor. Tracks course availability and auto-enrolls when slots open. Production automation tool.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Web Scraping</span>
+            <span class="tech-tag">Automation</span>
+            <span class="tech-tag">Monitoring</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/DevCristobalvc/sinu-auto-enrollment" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+      <h2>Let's Build Something Great</h2>
+      <p>
+        Looking for an AI engineer to build agentic systems, scale backend infrastructure, or lead technical teams?
+        Let's connect.
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:devcristobalvc@gmail.com" class="contact-link">
+          <span class="contact-icon">✉️</span>
+          Email
+        </a>
+        <a href="https://wa.me/573005412940" target="_blank" class="contact-link">
+          <span class="contact-icon">💬</span>
+          WhatsApp
+        </a>
+        <a href="https://linkedin.com/in/cristobal-valencia-ceron-91bb1b185" target="_blank" class="contact-link">
+          <span class="contact-icon">💼</span>
+          LinkedIn
+        </a>
+        <a href="https://github.com/DevCristobalvc" target="_blank" class="contact-link">
+          <span class="contact-icon">👨‍💻</span>
+          GitHub
+        </a>
+      </div>
+    </section>
   </main>
 
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <footer>
+    <p>© 2026 Cristobal Valencia. Built with precision. |
+    <a href="https://github.com/DevCristobalvc" style="color: var(--text-secondary); text-decoration: none;">
+      View source →
+    </a></p>
+  </footer>
 
-  <script>
-    // Navigate between sections
-    const navLinks = document.querySelectorAll('[data-nav-link]');
-    const pages = document.querySelectorAll('[data-page]');
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        const targetPage = this.textContent.toLowerCase();
-        const pageMap = { 'about': 'about', 'projects': 'projects', 'resume': 'resume', 'contact': 'contact' };
-        const pageToShow = pageMap[targetPage];
-
-        navLinks.forEach(l => l.classList.remove('active'));
-        pages.forEach(p => p.classList.remove('active'));
-
-        this.classList.add('active');
-        document.querySelector(`[data-page="${pageToShow}"]`)?.classList.add('active');
+  <script type="module">
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
 
-    // Toggle sidebar contacts
-    const sidebarBtn = document.querySelector('[data-sidebar-btn]');
-    const sidebar = document.querySelector('[data-sidebar]');
-
-    sidebarBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
+    // Analytics (optional)
+    window.addEventListener('load', () => {
+      console.log('Portfolio loaded. Welcome!');
     });
   </script>
 </body>
